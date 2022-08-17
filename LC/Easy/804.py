@@ -1,13 +1,13 @@
 class Solution:
     def uniqueMorseRepresentations(self, words: List[str]) -> int:
         translate = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
-        ans = []
+        ans = set()
         
         for word in words:
             translation = ""
             for c in word:
                 translation += translate[ord(c)-ord('a')]
             
-            ans.append(translation)
+            ans.add(translation)
             
-        return len(set(ans))
+        return len(ans)
