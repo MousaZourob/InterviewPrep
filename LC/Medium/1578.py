@@ -2,7 +2,6 @@ class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
         total_time = 0
         window_start = 0
-        max_time = neededTime[window_start]
         
         for window_end in range(1, len(colors)):
             if colors[window_start] == colors[window_end]:
