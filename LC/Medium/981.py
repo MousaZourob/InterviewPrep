@@ -1,19 +1,24 @@
+from sortedcontainers import SortedDict
+
 class TimeMap:
     def __init__(self):
-        self.data = defaultdict(dict)
+        self.data = {}
 
     def set(self, key: str, value: str, timestamp: int) -> None:
+        if not key in self.data:
+            self.data[key] = SortedDict()
+        
         self.data[key][timestamp] = value
             
     def get(self, key: str, timestamp: int) -> str:
-        if not self.data[key]:
+        if not key in self.data:
             return ""
         
-        for curr_time in range(timestamp, 0, -1):
-            if curr_time in self.data[key]:
-                return self.data[key][curr_time]
+        it = self.data[key].bisect_right(timestamp)
+        if it == 0:
+            return ""
         
-        return ""
+        return self.data[key].peekitem(it - 1)[1]
         
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
