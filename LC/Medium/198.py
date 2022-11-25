@@ -1,17 +1,8 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        dp = [0]*(len(nums))
+        first, second = 0, 0
         
-        def dfs(i):
-            if i >= len(nums):
-                return 0
-            if dp[i] > 0:
-                return dp[i]
-            if nums[i] == 0:
-                return 0
-            
-            dp[i] = nums[i] + max(dfs(i+2), dfs(i+3))
-            return dp[i]
+        for n in nums:
+            first, second = second, max(n + first, second)
         
-        
-        return max(dfs(0), dfs(1))
+        return second
