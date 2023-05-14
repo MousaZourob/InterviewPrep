@@ -3,7 +3,6 @@ class Solution:
         if Counter(s1) == Counter(s2):
             return True
         window_start = 0
-        curr_letters = []
         
         for window_end in range(len(s2)):
             if window_end - window_start + 1 == len(s1):
