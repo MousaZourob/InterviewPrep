@@ -3,25 +3,27 @@ class Solution:
         ans = []
         stack = []
         
-        def generate_brackets(o_brackets, c_brackets):
-            if o_brackets == c_brackets == n:
+        def dfs(o, c):
+            if o == c == n:
                 ans.append("".join(stack))
-            elif o_brackets == c_brackets:
+                return
+            elif o == c:
                 stack.append("(")
-                generate_brackets(o_brackets+1, c_brackets)
+                dfs(o+1, c)
                 stack.pop()
-            elif o_brackets == n:
+            elif o == n:
                 stack.append(")")
-                generate_brackets(o_brackets, c_brackets+1)
+                dfs(o, c+1)
                 stack.pop()
             else:
                 stack.append("(")
-                generate_brackets(o_brackets+1, c_brackets)
+                dfs(o+1, c)
                 stack.pop()
                 
                 stack.append(")")
-                generate_brackets(o_brackets, c_brackets+1)
+                dfs(o, c+1)
                 stack.pop()
-                
-        generate_brackets(0, 0)
+        
+        
+        dfs(0, 0)
         return ans
