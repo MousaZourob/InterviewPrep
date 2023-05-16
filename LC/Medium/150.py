@@ -10,13 +10,12 @@ class Solution:
                 n2 = stack.pop()
                 
                 if t == "+":
-                    curr = n2+n1
-                elif t == "-":
-                    curr = n2-n1
-                elif t == "*":
-                    curr = n2*n1
-                else:
-                    curr = int(float(n2)/n1)
-                stack.append(curr)
-                
-        return stack[0]
+                    stack.append(n2 + n1)
+                if t == "-":
+                    stack.append(n2 - n1)
+                if t == "*":
+                    stack.append(n2 * n1)
+                if t == "/":
+                    stack.append(int(n2/n1))
+        
+        return stack [0]
