@@ -7,7 +7,7 @@ class Solution:
             m = (l+r) // 2
             time = 0
             for b in piles:
-                time += ceil(b/m)
+                time += ceil(b / m)
             if time <= h:
                 r = m - 1
                 ans = m
