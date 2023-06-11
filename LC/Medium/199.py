@@ -10,20 +10,20 @@ class Solution:
         q = [root]
         
         while q:
-            curr_level = []
+            last_val = None
             
             for _ in range(len(q)):
                 curr = q.pop(0)
                 
                 if curr:
-                    curr_level.append(curr.val)
+                    last_val = curr.val
                 
                     if curr.left:
                         q.append(curr.left)
                     if curr.right:
                         q.append(curr.right)
             
-            if curr_level:
-                ans.append(curr_level[-1])
+            if last_val != None:
+                ans.append(last_val)
 
         return ans
