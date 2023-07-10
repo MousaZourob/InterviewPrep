@@ -9,16 +9,15 @@ class Solution:
         if not root:
             return 0
 
-        q = collections.deque()
-        q.append(root)
-        
+        q = [root]
         curr_depth = 0
+        
         while q:
-            level_size = len(q)
+            n = len(q)
             curr_depth += 1
             
-            for _ in range(level_size):
-                curr = q.popleft()
+            for _ in range(n):
+                curr = q.pop(0)
                 if curr:
                     if not curr.right and not curr.left:
                         return curr_depth
