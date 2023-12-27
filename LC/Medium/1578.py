@@ -1,15 +1,19 @@
 class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
-        total_time = 0
+        ans = 0
         window_start = 0
-        
-        for window_end in range(1, len(colors)):
+
+        curr_total = 0
+        curr_max = 0
+        for window_end in range(len(colors)):
             if colors[window_start] == colors[window_end]:
-                total_time += min(neededTime[window_start], neededTime[window_end])
-                
-                if neededTime[window_start] < neededTime[window_end]:
-                    window_start = window_end
+                curr_total += neededTime[window_end]
+                curr_max = max(curr_max, neededTime[window_end])
             else:
+                ans += curr_total - curr_max
                 window_start = window_end
-            
-        return total_time
+                curr_total = neededTime[window_end]
+                curr_max = neededTime[window_end]
+                
+        ans += curr_total - curr_max
+        return ans
