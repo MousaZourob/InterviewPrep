@@ -3,19 +3,12 @@ class Solution:
         if 1 == len(nums):
             return nums[0]
         
-        def rob(nums):
-            memo = {}        
+        def rob(nums: List[int]) -> int:
+            rob = not_rob = 0
 
-            def dfs(i):
-                if i >= len(nums):
-                    return 0
+            for n in nums:
+                rob, not_rob = max(not_rob + n, rob), rob
 
-                if i in memo:
-                    return memo[i]
-
-                memo[i] = max(dfs(i + 1), dfs(i + 2) + nums[i])
-                return memo[i]
-        
-            return dfs(0)
+            return rob
         
         return max(rob(nums[:-1]), rob(nums[1:]))
