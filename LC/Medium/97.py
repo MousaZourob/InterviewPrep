@@ -1,26 +1,21 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        if len(s1) + len(s2) != len(s3):
+        m = len(s1)
+        n = len(s2)
+        target = len(s3)
+        
+        if m + n != target:
             return False
         
-        dp = {}
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[m][n] = True
         
-        def dfs(n, m):
-            if (n, m) in dp:
-                return dp[(n, m)] == 1
-            if n + m == len(s3):
-                return True
-            
-            res = False 
-            if n < len(s1) and s1[n] == s3[n + m]:
-                res |= dfs(n + 1, m)
-            
-            if m < len(s2) and s2[m] == s3[n + m]:
-                res |= dfs(n, m + 1)
-            
-            dp[(n, m)] = 1 if res else 0
-            return res
-            
-        
-        return dfs(0, 0)
-        
+        for i in range(m, -1, -1):
+            for j in range(n, -1, -1):
+                if i < m and s1[i] == s3[i + j] and dp[i + 1][j]:
+                    dp[i][j] = True
+                if j < n and s2[j] == s3[i + j] and dp[i][j + 1]:
+                    dp[i][j] = True
+
+        return dp[0][0]
+ 
