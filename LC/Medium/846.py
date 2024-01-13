@@ -8,21 +8,18 @@ class Solution:
         count = Counter(hand)
         hand.sort()
         
-        i = 0
-        while i < len(hand):
-            min_num = hand[i]
-            
+        for i in range(len(hand)):
+            curr_num = hand[i]
+            if curr_num not in count:
+                continue
+
             for j in range(groupSize):
-                if min_num+j not in count:
+                if curr_num + j not in count:
                     return False
                 
-                count[min_num+j] -= 1
-
-                if count[min_num+j] == 0:
-                    del count[min_num+j]
-
-            while i < len(hand) and hand[i] not in count:
-                i += 1
-            
+                count[curr_num+j] -= 1
+                
+                if count[curr_num+j] == 0:
+                    del count[curr_num+j]
         
         return True
