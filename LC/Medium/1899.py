@@ -1,13 +1,13 @@
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        t1 = t2 = t3 = 0
+        res = [0, 0, 0]
         
-        for e1, e2, e3 in triplets:
-            if e1 > target[0] or e2 > target[1] or e3 > target[2]:
+        for t0, t1, t2 in triplets:
+            if t0 > target[0] or t1 > target[1] or t2 > target[2]:
                 continue
-            else:
-                t1 = max(t1, e1)
-                t2 = max(t2, e2)
-                t3 = max(t3, e3)
+            
+            res[0] = max(res[0], t0)
+            res[1] = max(res[1], t1)
+            res[2] = max(res[2], t2)
         
-        return [t1, t2, t3] == target
+        return res == target
