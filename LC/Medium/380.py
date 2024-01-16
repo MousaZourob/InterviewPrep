@@ -24,7 +24,7 @@ class RandomizedSet:
         self.dict[last_element] = index
         
         self.data.pop()
-        del(self.dict[val])
+        del self.dict[val]
         
         return True
         
