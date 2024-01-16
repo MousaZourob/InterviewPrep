@@ -1,21 +1,19 @@
 class Solution:
     def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
-        players = {}
+        players = [-1] * 100001
         
-        for match in matches:
-            if match[0] not in players:
-                players[match[0]] = 0
-            if match[1] not in players:
-                players[match[1]] = 0
-            players[match[1]] += 1
-        
-        ans = [[],[]]
-        for p, l in players.items():
-            if l == 0:
-                ans[0].append(p)
-            if l == 1:
-                ans[1].append(p)
-               
-        ans[0].sort()
-        ans[1].sort()
+        for winner, loser in matches:
+            if players[winner] == -1:
+                players[winner] = 0
+            if players[loser] == -1:
+                players[loser] = 0
+            players[loser] += 1
+
+        ans = [[], []]
+        for i in range(1, 100001):
+            if players[i] == 0:
+                ans[0].append(i)
+            elif players[i] == 1:
+                ans[1].append(i)
+            
         return ans
