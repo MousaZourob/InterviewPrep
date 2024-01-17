@@ -1,15 +1,14 @@
 class Solution:
     def calculateTime(self, keyboard: str, word: str) -> int:
-        indexes = defaultdict(int)
-        
-        for i, l in enumerate(keyboard):
-            indexes[l] = i
-            
         ans = 0
-        temp = 0
+        prev = keyboard[0]
+        
+        keys = {c: i for i, c in enumerate(keyboard)}
+        
+        print(keys)
         
         for c in word:
-            ans += abs(temp - indexes[c])
-            temp = indexes[c]
-            
+            ans += abs(keys[c] - keys[prev])
+            prev = c
+        
         return ans
