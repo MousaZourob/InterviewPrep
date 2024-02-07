@@ -1,15 +1,14 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
         freq = Counter(s)
-        heap = []
-
-        for char, count in freq.items():
-            heappush(heap, (-count, char))
+        buckets = [[] for _ in range(max(freq.values())+1)]
         
-        ans = ""
+        for c, i in freq.items():
+            buckets[i].append(c)
+            
+        ans = []
+        for i in range(len(buckets) -1, 0, -1):
+            for c in buckets[i]:
+                ans.append(c*i)
         
-        while heap:
-            count, char = heappop(heap)
-            ans += -1*count*char
-        
-        return ans
+        return "".join(ans)
