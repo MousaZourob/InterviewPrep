@@ -23,3 +23,4 @@ class Solution:
                 heappush(queue, (cost + travel_cost, neighbour, flights_taken + 1))
 
         return -1
+    
