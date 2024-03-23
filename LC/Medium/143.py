@@ -1,18 +1,18 @@
 class Solution:
     def reorderList(self, head: ListNode) -> None:
         if not head:
-            return 
-
+            return
+        
         slow = fast = head
         while fast and fast.next:
             slow = slow.next
-            fast = fast.next.next 
-
-        prev, curr = None, slow
-        while curr:
-            curr.next, prev, curr = prev, curr, curr.next       
-
-        head1, head2 = head, prev
-        while head2.next:
-            head1.next, head1 = head2, head1.next
-            head2.next, head2 = head1, head2.next
+            fast = fast.next.next
+        
+        prev = None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next     
+        
+        head1 = head
+        while prev.next:
+            head1.next, head1 = prev, head1.next
+            prev.next, prev = head1, prev.next
