@@ -1,7 +1,9 @@
+#include <vector>
+
 class Solution {
 public:
-    vector<int> lexicalOrder(int n) {
-        vector<int> ans;
+    std::vector<int> lexicalOrder(int n) {
+        std::vector<int> ans;
         int curr = 1;
 
         for (int i = 0; i < n; i++) {
