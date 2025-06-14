@@ -7,8 +7,7 @@ class Solution:
             if c != '9':
                 max_num = max_num.replace(c, "9")
                 break
-        for c in min_num:
-            if c != '0':
-                min_num = min_num.replace(c, "0")
-                break
+
+        min_num = min_num.replace(min_num[0], "0")
+
         return int(max_num) - int(min_num)
