@@ -1,10 +1,10 @@
 class Solution:
     def numSubseq(self, nums: List[int], target: int) -> int:
         nums.sort()
-        ans = 0
         l = 0
         r = len(nums) - 1
-        
+        ans = 0
+
         while l <= r:
             if nums[l] + nums[r] <= target:
                 ans += pow(2, r - l, (10**9 + 7))
