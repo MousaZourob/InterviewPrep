@@ -8,7 +8,6 @@ public:
             ans += numExchange;
             numBottles += 1;
         }
-
         return ans + numBottles;
     }
 };
