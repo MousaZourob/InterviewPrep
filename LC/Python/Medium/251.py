@@ -1,29 +1,24 @@
 class Vector2D:
 
     def __init__(self, vec: List[List[int]]):
-        self.flattened_list = self.list_generator(vec)
-        self.peeked_num = None
-        
-    def list_generator(self, nested_list):
-        for nlist in nested_list:
-            for num in nlist:
-                yield num
-    
+        self.vec = vec
+        self.r = 0
+        self.c = 0
+
+    def get_next(self):
+        while self.r < len(self.vec) and self.c == len(self.vec[self.r]):
+            self.r += 1
+            self.c = 0
+
     def next(self) -> int:
-        if not self.hasNext(): return None
-        
-        next_num = self.peeked_num
-        self.peeked_num = None
-        return next_num
+        self.get_next()
+        res = self.vec[self.r][self.c]
+        self.c += 1
+        return res
 
     def hasNext(self) -> bool:
-        if self.peeked_num is not None: return True
-        
-        try:
-            self.peeked_num = next(self.flattened_list)
-            return True
-        except:
-            return False
+        self.get_next()
+        return self.r < len(self.vec)
 
 
 # Your Vector2D object will be instantiated and called as such:
