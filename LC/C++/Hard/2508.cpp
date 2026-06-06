@@ -28,7 +28,7 @@ public:
             if (!hasEdge(a, b)) return true;
 
             for (size_t k{1}; k <= n; ++k) {
-                if (k == a || k == b) return false;
+                if (k == a || k == b) continue;
                 if (!hasEdge(a, k) && !hasEdge(k, b)) return true;
             }
             return false;
