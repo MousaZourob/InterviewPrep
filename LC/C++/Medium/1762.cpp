@@ -8,11 +8,15 @@ public:
         for (int i = heights.size() - 2; i >= 0; --i) {
             if (heights[i] > maxSeen) {
                 ans.push_back(i);
+                maxSeen = heights[i];
             }
-            maxSeen = std::max(maxSeen, heights[i]);
         }
         
-        std::reverse(ans.begin(), ans.end());
+        for (int i = 0; i < ans.size() / 2; i++) {
+            int temp = ans[i];
+            ans[i] = ans[ans.size() - i - 1];
+            ans[ans.size() - i - 1] = temp; 
+        }
         return ans;
     }
 };
