@@ -12,11 +12,7 @@ public:
             maxSeen = std::max(maxSeen, heights[i]);
         }
         
-        for (int i = 0; i < ans.size() / 2; i++) {
-            int temp = ans[i];
-            ans[i] = ans[ans.size() - i - 1];
-            ans[ans.size() - i - 1] = temp; 
-        }
+        std::reverse(ans.begin(), ans.end());
         return ans;
     }
 };
