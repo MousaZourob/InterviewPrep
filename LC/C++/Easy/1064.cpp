@@ -5,10 +5,10 @@ public:
 
         for (size_t i = 0; i < arr.size(); ++i) {
             if (arr[i] == i) {
-                ans = min(ans, arr[i]);
+                return i;
             }
         }
 
-        return ans != INT_MAX ? ans : -1;
+        return -1;
     }
 };
